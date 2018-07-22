@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Time Sheet" max_length="40" name="x_time_sheet_time_sheet" type="collection">
+        <element label="Comments" max_length="400" name="comments" type="string"/>
+        <element default="javascript:gs.getUserID();" dynamic_default_value="bdcb83a85f220100a9ad2572f2b4773d" label="Employee" max_length="32" name="employee" read_only="true" reference="sys_user" type="reference" use_dynamic_default="true"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element choice="1" default="draft" label="State" max_length="40" name="state" read_only="true" type="choice">
+            <choice>
+                <element label="Draft" sequence="0" value="draft"/>
+                <element label="Waiting for Approval" sequence="1" value="waiting for approval"/>
+                <element label="Approved" sequence="2" value="approved"/>
+                <element label="Rejected" sequence="3" value="rejected"/>
+            </choice>
+        </element>
+        <element label="Time Cards" max_length="32" name="time_cards" reference="x_time_sheet_time_cards" type="reference"/>
+        <element default="0" label="Total Hours" max_length="40" name="total_hours" read_only="true" type="float"/>
+        <element label="Week Starts On" mandatory="true" max_length="40" name="week_starts_on" type="glide_date"/>
+        <index name="index">
+            <element name="time_cards"/>
+        </index>
+        <index name="index2">
+            <element name="employee"/>
+        </index>
+    </element>
+</database>
